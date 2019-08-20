@@ -51,38 +51,45 @@
   </header>
 
   <main role="main">
-
-    <section class="jumbotron text-center">
-      <div class="container">
-        <h1 class="jumbotron-heading">Hi i'm Mr.Rizig, Muhammed Rizig.</h1>
-        <p class="lead text-muted">I'm a Django Web Developer, and i want to better the world.</p>
-        <p>
-          <a href="mailto:mohammadrizig@gmail.com" class="btn btn-primary my-2">Email Me</a>
-        </p>
-        <img src="{% static 'blank-user.jpg'%}" style="max-width: 100%;" />
-      </div>
-    </section>
-
-    <div class="album py-5 bg-light">
-      <div class="container">
-
-        <div class="row">
-
-          {% for job in jobs.all %}
-          <div class="col-md-4">
-            <div class="card mb-4 shadow-sm">
-              <img class="" src="{{job.image.url}} " style="max-width: 100%;"/>
-              <div class="card-body">
-                <p class="card-text">{{job.summary}}</p>
-                </div>
-              </div>
-            </div>
-            {% endfor %}
-          </div>
-        </div>
-
+    <div class="container">
+    <h1 class="text-center pt-5"> Welcome to my Blog</h1>
+    <br />
+    <br />
+    <h2>Latest Posts</h2>
+    <hr />
+    <div/>
   </main>
+  <main role="main" class="container">
+  <div class="row">
 
+
+    <div class="col-md-8 blog-main">
+      <div class="blog-post">
+        {% for blog in blogs.all %}
+        <a href="{% url 'detail' blog.id %}"><h2>{{blog.title}}</h2></a>
+        <p class="blog-post-meta">{{blog.pub_date_pretty}} by <a href="#">Mark</a></p>
+        {% if blog.image %}
+            <img class="img-fluid" style="width:640px;height:320px" src="{{blog.image.url}}"/>
+        {% else %}
+            <img class="img-fluid" style="width:640px;height:320px" src="/media/images/default.png" />
+        {% endif %}
+        <p><h6>{{blog.summary}}...<h6/></p>
+
+      <hr/>
+      {%endfor%}
+
+      </div><!-- /.blog-post -->
+
+
+
+
+    </div><!-- /.blog-main -->
+
+
+
+  </div><!-- /.row -->
+
+</main><!-- /.container -->
   <footer class="text-muted">
     <div class="container text-center" >
       <p>© CopyRight Muhammed Rizig {% now "Y" %}</p>
